@@ -1,3 +1,4 @@
+using Assets.Scripts.Bullets;
 using CosmicCuration.Bullets;
 using UnityEngine;
 
@@ -9,7 +10,8 @@ namespace CosmicCuration.Player
 
         public PlayerService(PlayerView playerViewPrefab, PlayerScriptableObject playerScriptableObject, BulletView bulletPrefab, BulletScriptableObject bulletScriptableObject)
         {
-            playerController = new PlayerController(playerViewPrefab, playerScriptableObject, bulletPrefab, bulletScriptableObject);
+            BulletPool bulletPool = new BulletPool(bulletScriptableObject, bulletPrefab);
+            playerController = new PlayerController(playerViewPrefab, playerScriptableObject, bulletPool);
         }
 
         public PlayerController GetPlayerController() => playerController;
