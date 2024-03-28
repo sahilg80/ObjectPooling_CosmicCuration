@@ -59,7 +59,7 @@ namespace CosmicCuration.Enemy
 
         private void SpawnEnemyAtPosition(Vector2 spawnPosition, EnemyOrientation enemyOrientation)
         {
-            EnemyController spawnedEnemy = enemyPool.GetEnemy();
+            EnemyController spawnedEnemy = enemyPool.GetPooledItem();
             spawnedEnemy.Configure(spawnPosition, enemyOrientation);
         }
 
@@ -109,7 +109,7 @@ namespace CosmicCuration.Enemy
 
         public void SetEnemySpawning(bool setActive) => isSpawning = setActive;
 
-        public void ReturnEnemyToPool(EnemyController enemyToReturn) => enemyPool.ReturnEnemy(enemyToReturn);
+        public void ReturnEnemyToPool(EnemyController enemyToReturn) => enemyPool.ReturnPooledItem(enemyToReturn);
     }
 
     public enum EnemyOrientation
