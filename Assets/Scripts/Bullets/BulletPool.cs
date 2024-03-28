@@ -24,10 +24,9 @@ namespace Assets.Scripts.Bullets
         {
             if (pooledBullets.Count > 0)
             {
-                PooledBullet pooledBullet = pooledBullets.FirstOrDefault(p => !p.IsUsed);
+                PooledBullet pooledBullet = pooledBullets.FirstOrDefault(bullet => !bullet.IsUsed);
                 if (pooledBullet != null)
                 {
-                    pooledBullet.Controller = new BulletController(bulletView, bulletScriptableObject);
                     pooledBullet.IsUsed = true;
                     return pooledBullet.Controller;
                 }
@@ -44,6 +43,11 @@ namespace Assets.Scripts.Bullets
             return pooledBullet.Controller;
         }
 
+        public void ReturnBullet(BulletController controller)
+        {
+            PooledBullet pooledBullet = pooledBullets.FirstOrDefault(bullet => bullet.Controller.Equals(controller));
+            pooledBullet.IsUsed = false;
+        }
 
         public class PooledBullet
         {
