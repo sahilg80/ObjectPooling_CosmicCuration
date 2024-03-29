@@ -10,23 +10,16 @@ namespace Assets.Scripts.VFX
 {
     public class VFXPool : GenericObjectPool<VFXController>
     {
-        private List<VFXData> vfxData;
+        private VFXView vfxPrefab;
 
-        public VFXPool(List<VFXData> vfxData)
+        public VFXPool(VFXView vfxPrefab)
         {
-            this.vfxData = vfxData;
+            this.vfxPrefab = vfxPrefab;
         }
 
-        public VFXController GetVFXFromPool<T>(VFXType type)
-        {
-            VFXView prefabToSpawn = vfxData.Find(item => item.type == type).prefab;
-            return GetItem<T>();
-        }
+        public VFXController GetVFXFromPool() => GetItem<VFXController>();
 
-        protected override VFXController CreateItem<T>()
-        {
-            
-        }
+        protected override VFXController CreateItem<T>() => new VFXController(vfxPrefab);
 
     }
 }
