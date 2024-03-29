@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CosmicCuration.VFX
 {
     public class VFXView : MonoBehaviour
     {
+        [SerializeField] 
+        private List<VFXData> particleSystemMap;
         private VFXController controller;
         private ParticleSystem currentPlayingVFX;
 
