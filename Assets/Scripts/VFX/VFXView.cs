@@ -18,7 +18,10 @@ namespace CosmicCuration.VFX
         private void Update()
         {
             if (vfx != null && vfx.isStopped)
-                    Destroy(gameObject);
+            {
+                GameService.Instance.GetVFXService().ReturnVFXToPool(controller);
+                this.gameObject.SetActive(false);
+            }
         }
     }
 }
